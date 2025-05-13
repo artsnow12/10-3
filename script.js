@@ -6,21 +6,20 @@ const contactBook = {
         { name: "Катя", phone: "+380501234789", email: "katya@gmaul.com" }
     ],
 
-    findContact(nameToFind) {
-        const contact = this.contacts.find(c => c.name === nameToFind);
-        if (contact) {
-            console.log("Знайдено:", contact);
-        } else {
-            console.log("Контакт не знайдено");
-        }
+    findContacts(nameStart) {
+        const search = nameStart.toLowerCase();
+        const results = this.contacts.filter(contact =>
+            contact.name.toLowerCase().startsWith(search)
+        );
+        return results;
     },
 
     addContact(name, phone, email) {
         this.contacts.push({ name, phone, email });
-        console.log("Контакт додано.", this.contacts);
+        console.log("Контакт додано. Список оновлено:", this.contacts);
     }
 };
 
 
-contactBook.findContact("Катя");
-contactBook.addContact("Олег", "+380631112222", "oleg@gmaul.com");
+console.log(contactBook.findContacts("ка")); 
+console.log(contactBook.findContacts("а"));  
